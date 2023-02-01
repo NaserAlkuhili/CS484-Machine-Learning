@@ -9,7 +9,9 @@ Y = input_data['x']
 
 # Q1: What are the count, the mean, the standard deviation, the minimum, the 25th percentile, the median, the 75th percentile, 
 # and the maximum of the feature x? Please round your answers to the seventh decimal place.
-print(Y.describe())
+pd.set_option("display.precision", 7)
+print(Y.describe().apply(lambda x: round(x, 7)))
+# print(Y.mean())
 
 
 # Q2: Use the Shimazaki and Shinomoto (2007) method to recommend a bin width.  We will try d = 0.1, 0.2, 0.25, 0.5, 1, 2, 2.5, 5, 10, 20, 25, 50, and 100.
@@ -47,7 +49,8 @@ def shimazaki_Cd(y, d_list):
 
       # Count the number of observations in each bins
       uvalue, ucount = numpy.unique(bin_index, return_counts = True)
-
+      # if delta == 5:
+      #    print(ucount/(5*len(Y)))
       # Calculate the average frequency
       mean_ucount = numpy.mean(ucount)
       ssd_ucount = numpy.mean(numpy.power((ucount - mean_ucount), 2))
@@ -83,21 +86,21 @@ print(sorted_df)
 
 delta = sorted_df['Bin Width'][0]
 bin_boundary = matrix_boundary[sorted_df['Bin Width'][0]]
-
-plt.figure(figsize = (10,6), dpi = 200)
-plt.hist(Y, bins = bin_boundary, align = 'mid')
+plt.figure(figsize = (10,6), dpi = 150)
+# plt.hist(Y, bins = bin_boundary, align = 'mid', density=True)
+plt.hist(Y,bins = bin_boundary,weights=numpy.ones_like(Y)/len(Y))
 plt.title('Delta = ' + str(delta))
-plt.ylabel('Number of Observations')
+plt.ylabel('Estimated Density')
 plt.grid(axis = 'y')
 plt.show()
 
 
 # The density estimator for all the deltas.
-for delta in d_list:
-   plt.figure(figsize = (10,6), dpi = 200)
-   bin_boundary = matrix_boundary[delta]
-   plt.hist(Y, bins = bin_boundary, align = 'mid')
-   plt.title('Delta = ' + str(delta))
-   plt.ylabel('Number of Observations')
-   plt.grid(axis = 'y')
-   plt.show()
+# for delta in d_list:
+#    plt.figure(figsize = (10,6), dpi = 200)
+#    bin_boundary = matrix_boundary[delta]
+#    plt.hist(Y, bins = bin_boundary, align = 'mid')
+#    plt.title('Delta = ' + str(delta))
+#    plt.ylabel('Number of Observations')
+#    plt.grid(axis = 'y')
+#    plt.show()
