@@ -3,7 +3,7 @@ import numpy
 import pandas as pd
 
 # Data
-input_data = pd.read_csv('Week 1/data/Gamma4804.csv')
+input_data = pd.read_csv('Week1/data/Gamma4804.csv')
 Y = input_data['x']
 
 

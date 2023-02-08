@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 
 # Data
-input_data = pd.read_csv('Week 1/data/hmeq.csv')
+input_data = pd.read_csv('Week1/data/hmeq.csv')
 
 #initializing the random seed
 random.seed(a = 20230101)

@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 
 # Data
-df = pd.read_csv('Week 1/data/Fraud.csv')
+df = pd.read_csv('Week1/data/Fraud.csv')
 random.seed(a = 20230225)
 
 
